@@ -1,17 +1,18 @@
 'use strict';
 const listElement = document.querySelector('.js-list');
-const kittenOne = `<li class="card">
+
+const kittenOne  = `<li class="card">
 <article>
     <img class="card_img" src="https://dev.adalab.es/gato-siames.webp" alt="siames-cat" />
     <h3 class="card_title">Anastacio</h3>
     <h4 class="card_race">Siamés</h4>
     <p class="card_description">
         Porte elegante, su patrón de color tan característico y sus ojos
-        de un azul intenso, pero su historia se remonta a Asía al menos
+        de un azul intenso, pero su historia se remonta a Asia al menos
         hace 500 años, donde tuvo su origen muy posiblemente.
     </p>
 </article>
-</li> `;
+</li>`;
 
 const kittenTwo = `<li class="card">
 <img class="card_img" src="https://dev.adalab.es/sphynx-gato.webp" alt="sphynx-cat" />
@@ -23,7 +24,7 @@ const kittenTwo = `<li class="card">
     gatuna que se caracteriza por la «ausencia» de pelo.
 </p>
 </li>`;
-const kittenThree =  `<li class="card">
+const kittenThree = `<li class="card">
 <img class="card_img" src="https://dev.adalab.es/maine-coon-cat.webp" alt="maine-coon-cat" />
 <h3 class="card_title">Cielo</h3>
 <h4 class="card_race">Maine Coon</h4>
@@ -34,3 +35,11 @@ const kittenThree =  `<li class="card">
 </p>
 </li>`;
 listElement.innerHTML = kittenOne + kittenTwo + kittenThree;
+
+const btnadd = document.querySelector('.js-btn-add')
+const extraform = document.querySelector('.extra-form')
+btnadd.addEventListener('click', (event) => {
+       extraform.classList.toggle("collapsed");
+  });
+
+
