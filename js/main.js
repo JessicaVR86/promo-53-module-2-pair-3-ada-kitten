@@ -44,12 +44,34 @@ const kittenThree = `<li class="card">
 </li>`;
 listElement.innerHTML = kittenOne + kittenTwo + kittenThree;
 
-const btnadd = document.querySelector('.js-btn-add')
-const extraform = document.querySelector('.extra-form')
-btnadd.addEventListener('click', (event) => {
-       extraform.classList.toggle("collapsed");
-  });
 
+// const btnadd = document.querySelector('.js-btn-add')
+// const newForm = document.querySelector('.new-form')
+// btnadd.addEventListener('click', handleClickNewCatForm);
+  //     //  extraform.classList.toggle("collapsed");
+  // });
+
+    const btnadd = document.querySelector('.js-btn-add');
+    const newForm = document.querySelector('.new-form');
+  
+    function showNewCatForm() {
+      newForm.classList.remove("collapsed");
+    }
+  
+    function hideNewCatForm() {
+      newForm.classList.add("collapsed");
+    }
+  
+    function handleClickNewCatForm(event) {
+      if (newForm.classList.contains("collapsed")) {
+        showNewCatForm();
+      } else {
+        hideNewCatForm();
+      }
+    }
+  
+    btnadd.addEventListener('click', handleClickNewCatForm);
+  ;
   const btnsearch = document.querySelector ('.js_button-search')
   const searchdesc = document.querySelector ('.js_in_search_desc')
 
