@@ -1,4 +1,10 @@
 'use strict';
+const btnsearch = document.querySelector ('.js_button-search')
+  const searchdesc = document.querySelector ('.js_in_search_desc')
+  const btnadd = document.querySelector('.js-btn-add');
+  const newForm = document.querySelector('.new-form');
+  const listElement = document.querySelector('.js-list');
+
 const kittenImage1 = 'https://dev.adalab.es/gato-siames.webp';
 const kittenName1 = "Anastacio";
 // const uppercasekitten1 = kittenName1.toUpperCase();
@@ -16,33 +22,33 @@ const kittenName3 = "Cielo";
 const kittenRace3 = "Maine Coon";
   const kittenDesc3 = "Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad. Sus ojos son grandes y las orejas resultan largas y en punta."
 
-const listElement = document.querySelector('.js-list');
 
-const kittenCard1 = document.querySelector('.list');
 
-const kittenOne  = `<li class="card">
-<article>
-    <img class="card_img" src="${kittenImage1}" alt="siames-cat" />
-    <h3 class="card_title">${kittenName1}</h3>
-    <h4 class="card_race">${kittenRace1}</h4>
-    <p class="card_description">${kittenDesc1}</p>
-</article>
-</li>`;
+// const kittenCard1 = document.querySelector('.list');
 
-const kittenTwo = `<li class="card">
-<img class="card_img" src="${kittenImage2}" alt="sphynx-cat" />
-<h3 class="card_title">${kittenName2}</h3>
-<h4 class="card_race">${kittenRace2}</h4>
-<p class="card_description">${kittenDesc2}</p>
-</li>`;
-const kittenThree = `<li class="card">
-<img class="card_img" src="${kittenImage3}" alt="maine-coon-cat" />
-<h3 class="card_title">${kittenName3}</h3>
-<h4 class="card_race">${kittenRace3}</h4>
-<p class="card_description">${kittenDesc3}
-</p>
-</li>`;
-listElement.innerHTML = kittenOne + kittenTwo + kittenThree;
+// const kittenOne  = `<li class="card">
+// <article>
+//     <img class="card_img" src="${kittenImage1}" alt="siames-cat" />
+//     <h3 class="card_title">${kittenName1}</h3>
+//     <h4 class="card_race">${kittenRace1}</h4>
+//     <p class="card_description">${kittenDesc1}</p>
+// </article>
+// </li>`;
+
+// const kittenTwo = `<li class="card">
+// <img class="card_img" src="${kittenImage2}" alt="sphynx-cat" />
+// <h3 class="card_title">${kittenName2}</h3>
+// <h4 class="card_race">${kittenRace2}</h4>
+// <p class="card_description">${kittenDesc2}</p>
+// </li>`;
+// const kittenThree = `<li class="card">
+// <img class="card_img" src="${kittenImage3}" alt="maine-coon-cat" />
+// <h3 class="card_title">${kittenName3}</h3>
+// <h4 class="card_race">${kittenRace3}</h4>
+// <p class="card_description">${kittenDesc3}
+// </p>
+// </li>`;
+// listElement.innerHTML = kittenOne + kittenTwo + kittenThree;
 
 
 // const btnadd = document.querySelector('.js-btn-add')
@@ -51,8 +57,7 @@ listElement.innerHTML = kittenOne + kittenTwo + kittenThree;
   //     //  extraform.classList.toggle("collapsed");
   // });
 
-    const btnadd = document.querySelector('.js-btn-add');
-    const newForm = document.querySelector('.new-form');
+
   
     function showNewCatForm() {
       newForm.classList.remove("collapsed");
@@ -69,23 +74,59 @@ listElement.innerHTML = kittenOne + kittenTwo + kittenThree;
         hideNewCatForm();
       }
     }
-  
+  function renderKitten(kittenImage, kittenName, kittenRace, kittenDesc) {
+    listElement.innerHTML +=
+    `<li class="card">
+<article>
+    <img class="card_img" src="${kittenImage}" />
+    <h3 class="card_title">${kittenName}</h3>
+    <h4 class="card_race">${kittenRace}</h4>
+    <p class="card_description">${kittenDesc}</p>
+</article>
+</li>`;
+  }
+
+
+
+  renderKitten(kittenImage1, kittenName1, kittenRace1, kittenDesc1);
+  renderKitten(kittenImage2, kittenName2, kittenRace2, kittenDesc2);
+  renderKitten(kittenImage3, kittenName3, kittenRace3, kittenDesc3);
     btnadd.addEventListener('click', handleClickNewCatForm);
   ;
-  const btnsearch = document.querySelector ('.js_button-search')
-  const searchdesc = document.querySelector ('.js_in_search_desc')
+  
 
-  btnsearch.addEventListener("click", (ev) => {
-    ev.preventDefault();
+  // btnsearch.addEventListener("click", (ev) => {
+  //   ev.preventDefault();
+  //   const descrSearchText = searchdesc.value;
+  //   if (kittenDesc1.includes(descrSearchText)) {
+  //   listElement.innerHTML = newkitten1
+  // }
+  //   if (kittenDesc2.includes(descrSearchText)) {
+  //   listElement.innerHTML += kittenTwo
+  // }
+  // if (kittenDesc3.includes(descrSearchText)) {
+  //   listElement.innerHTML += kittenThree
+  // }
+  // });
+
+
+
+  const filterKitten = (event) => {
+    event.preventDefault();
     const descrSearchText = searchdesc.value;
+    console.log(descrSearchText);
+    
+    listElement.innerHTML = '';
     if (kittenDesc1.includes(descrSearchText)) {
-    listElement.innerHTML = newkitten1
-  }
+      renderKitten(kittenImage1, kittenName1, kittenRace1, kittenDesc1);
+    }
     if (kittenDesc2.includes(descrSearchText)) {
-    listElement.innerHTML += kittenTwo
-  }
-  if (kittenDesc3.includes(descrSearchText)) {
-    listElement.innerHTML += kittenThree
-  }
-  });
+      renderKitten(kittenImage2, kittenName2, kittenRace2, kittenDesc2);
+    }
+    if (kittenDesc3.includes(descrSearchText)) {
+      renderKitten(kittenImage3, kittenName3, kittenRace3, kittenDesc3);
+    }
+  };
 
+      btnsearch.addEventListener("click",filterKitten);
+  
