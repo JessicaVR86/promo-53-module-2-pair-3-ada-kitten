@@ -4,27 +4,30 @@ const btnsearch = document.querySelector ('.js_button-search')
   const btnadd = document.querySelector('.js-btn-add');
   const newForm = document.querySelector('.new-form');
   const listElement = document.querySelector('.js-list');
-  const raceSearchText = document.querySelector('.js_race_search')
+  const raceSearchText = document.querySelector('.js_race_search');
+  const addForm = document.querySelector ('.form');
 
-const kittenData_1 = {
-  image: 'https://dev.adalab.es/gato-siames.webp',
-  name:'Anastacio',
-  desc:'Porte elegante, su patrón de color tan característico y sus ojos de un azul intenso, pero su historia se remonta a Asía al menos hace 500 años, donde tuvo su origen muy posiblemente.',
-  race: 'Siamés',
-}  
-const kittenData_2 = {
-  image: 'https://dev.adalab.es/sphynx-gato.webp',
-  name:'Fiona',
-  desc:'Produce fascinación y curiosidad. Exótico, raro, bello, extraño… hasta con pinta de alienígena han llegado a definir a esta raza gatuna que se caracteriza por la «ausencia» de pelo.',
-  race: 'Sphynx',
-}  
+  const kittenDataList = [
+    {
+    image: 'https://dev.adalab.es/gato-siames.webp',
+    name:'Anastacio',
+    desc:'Porte elegante, su patrón de color tan característico y sus ojos de un azul intenso, pero su historia se remonta a Asia al menos hace 500 años, donde tuvo su origen muy posiblemente.',
+    race: 'Siamés',
+      }  ,
 
-const kittenData_3 = {
-  image: 'https://dev.adalab.es/maine-coon-cat.webp',
-  name:'Cielo',
-  desc:'Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad. Sus ojos son grandes y las orejas resultan largas y en punta.' ,
-  // race: 'Maine Coon',
-} 
+      {
+          image: 'https://dev.adalab.es/sphynx-gato.webp',
+          name:'Fiona',
+          desc:'Produce fascinación y curiosidad. Exótico, raro, bello, extraño… hasta con pinta de alienígena han llegado a definir a esta raza gatuna que se caracteriza por la «ausencia» de pelo.',
+          race: 'Sphynx',
+        } , 
+        {
+            image: 'https://dev.adalab.es/maine-coon-cat.webp',
+            name:'Cielo',
+            desc:'Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad. Sus ojos son grandes y las orejas resultan largas y en punta.' ,
+            // race: 'Maine Coon',
+          } 
+  ];
 
 
 function showNewCatForm() {
@@ -43,37 +46,40 @@ function handleClickNewCatForm(event) {
       }
     }
 
-function renderrace(kittenrace) {
-  let breedText;
-    if (kittenrace === "" || kittenrace === undefined) {
-      breedText = `Uy que despiste, no sabemos su raza`;
-    } else {
-      breedText = kittenrace;
-    }
-
-    return breedText;
-}
     
-function renderKitten(kittenData) {
+function renderKitten(kittenDataList) {
+  function renderrace(kittenrace) {
+    let breedText;
+      if (kittenrace === "" || kittenrace === undefined) {
+        breedText = `Uy que despiste, no sabemos su raza`;
+      } else {
+        breedText = kittenrace;
+      }
   
+      return breedText;
+  }
 
-  const breedText = renderrace(kittenData.race);
+  const breedText = renderrace(kittenDataList.race);
 
     listElement.innerHTML +=
     `<li class="card">
 <article>
-    <img class="card_img" src="${kittenData.image}" />
-    <h3 class="card_title">${kittenData.name}</h3>
+    <img class="card_img" src="${kittenDataList.image}" />
+    <h3 class="card_title">${kittenDataList.name.toUpperCase()}</h3>
     <h4 class="card_race">${breedText}</h4>
-    <p class="card_description">${kittenData.desc}</p>
+    <p class="card_description">${kittenDataList.desc}</p>
 </article>
 </li>`;
   }
-  renderKitten(kittenData_1);
-  renderKitten(kittenData_2);
-  renderKitten(kittenData_3);
+  // renderKitten(kittenData_1);
+  // renderKitten(kittenData_2);
+  // renderKitten(kittenData_3);
+  renderKitten(kittenDataList[0]);
+  renderKitten(kittenDataList[1]);
+  renderKitten(kittenDataList[2]);
     btnadd.addEventListener('click', handleClickNewCatForm);
   ;
+
   
 const filterKitten = (event) => {
     event.preventDefault();
@@ -81,17 +87,24 @@ const filterKitten = (event) => {
     console.log(descrSearchText);
     
     listElement.innerHTML = '';
-    if (kittenData_1.desc.includes(descrSearchText)) {
-      renderKitten(kittenData_1);
+    if (kittenDataList[0].desc.includes(descrSearchText)) {
+      renderKitten(kittenDataList[0]);
     }
-    if (kittenData_2.desc.includes(descrSearchText)) {
-      renderKitten(kittenData_2);
+    if (kittenDataList[1].desc.includes(descrSearchText)) {
+      renderKitten(kittenDataList[1]);
     }
-    if (kittenData_3.desc.includes(descrSearchText)) {
-      renderKitten(kittenData_3);
+    if (kittenDataList[2].desc.includes(descrSearchText)) {
+      renderKitten(kittenDataList[2]);
     }
   };
 btnsearch.addEventListener("click",filterKitten);
+
+const buttonCancelForm = document.querySelector('.js-btn-cancel');
+const cancelNewKitten = (event) => {
+   addForm.innerHTML = addForm.innerHTML;
+};
+buttonCancelForm.addEventListener('click', cancelNewKitten);
+    
 
 
       // const kittenImage1 = 'https://dev.adalab.es/gato-siames.webp';
@@ -154,3 +167,34 @@ btnsearch.addEventListener("click",filterKitten);
   //   listElement.innerHTML += kittenThree
   // }
   // });
+
+  // // const kittenData_1 = {
+// //   image: 'https://dev.adalab.es/gato-siames.webp',
+// //   name:'Anastacio',
+// //   desc:'Porte elegante, su patrón de color tan característico y sus ojos de un azul intenso, pero su historia se remonta a Asía al menos hace 500 años, donde tuvo su origen muy posiblemente.',
+// //   race: 'Siamés',
+// // }  
+// // const kittenData_2 = {
+// //   image: 'https://dev.adalab.es/sphynx-gato.webp',
+// //   name:'Fiona',
+// //   desc:'Produce fascinación y curiosidad. Exótico, raro, bello, extraño… hasta con pinta de alienígena han llegado a definir a esta raza gatuna que se caracteriza por la «ausencia» de pelo.',
+// //   race: 'Sphynx',
+// // }  
+
+// // const kittenData_3 = {
+// //   image: 'https://dev.adalab.es/maine-coon-cat.webp',
+// //   name:'Cielo',
+// //   desc:'Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad. Sus ojos son grandes y las orejas resultan largas y en punta.' ,
+//   // race: 'Maine Coon',
+// } 
+
+// function renderrace(kittenrace) {
+//   let breedText;
+//     if (kittenrace === "" || kittenrace === undefined) {
+//       breedText = `Uy que despiste, no sabemos su raza`;
+//     } else {
+//       breedText = kittenrace;
+//     }
+
+//     return breedText;
+// }
