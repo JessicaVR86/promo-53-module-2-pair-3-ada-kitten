@@ -84,8 +84,7 @@ function renderKitten(kittenDataList) {
 const filterKitten = (event) => {
     event.preventDefault();
     const descrSearchText = searchdesc.value;
-    console.log(descrSearchText);
-    
+       
     listElement.innerHTML = '';
     if (kittenDataList[0].desc.includes(descrSearchText)) {
       renderKitten(kittenDataList[0]);
